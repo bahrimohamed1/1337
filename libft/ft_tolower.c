@@ -6,11 +6,11 @@
 /*   By: mbahri <mbahri@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/16 23:03:07 by mbahri            #+#    #+#             */
-/*   Updated: 2025/10/16 23:05:09 by mbahri           ###   ########.fr       */
+/*   Updated: 2025/10/29 09:51:30 by mbahri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_tolowe(int c)
+int	ft_tolower(int c)
 {
 	if (!(c >= 'A' && c <= 'Z'))
 		return (c);

@@ -6,7 +6,7 @@
 /*   By: mbahri <mbahri@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 22:15:46 by mbahri            #+#    #+#             */
-/*   Updated: 2025/10/23 00:48:28 by mbahri           ###   ########.fr       */
+/*   Updated: 2025/10/29 08:56:56 by mbahri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	*ft_calloc(size_t count, size_t size)
 
 	ptr = malloc(count * size);
 	if (!ptr)
-		return (0);
+		return (NULL);
 	ft_bzero(ptr, count * size);
 	return (ptr);
 }

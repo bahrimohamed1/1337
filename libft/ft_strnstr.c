@@ -6,7 +6,7 @@
 /*   By: mbahri <mbahri@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/19 16:17:45 by mbahri            #+#    #+#             */
-/*   Updated: 2025/10/19 16:18:09 by mbahri           ###   ########.fr       */
+/*   Updated: 2025/10/29 10:12:40 by mbahri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,10 @@ char	*ft_strnstr(const char *big, const char *little, size_t len)
 	size_t	i;
 	size_t	j;
 
-	if (len == 0)
-		return (0);
 	if (little[0] == '\0')
 		return ((char *)big);
+	if (len == 0)
+		return (0);
 	j = 0;
 	while (big[j] && j < len)
 	{
