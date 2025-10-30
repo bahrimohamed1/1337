@@ -6,7 +6,7 @@
 /*   By: mbahri <mbahri@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/27 18:28:55 by mbahri            #+#    #+#             */
-/*   Updated: 2025/10/29 12:10:37 by mbahri           ###   ########.fr       */
+/*   Updated: 2025/10/30 17:36:13 by mbahri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	ft_lstadd_front(t_list **lst, t_list *new)
 {
 	if (!lst || !new)
-		return;
+		return ;
 	new->next = (*lst)->next;
-	(*lst)->next = &new;
+	(*lst)->next = new;
 }

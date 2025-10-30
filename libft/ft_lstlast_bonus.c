@@ -1,28 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstsize_bonus.c                                 :+:      :+:    :+:   */
+/*   ft_lstlast_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbahri <mbahri@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/30 13:59:29 by mbahri            #+#    #+#             */
-/*   Updated: 2025/10/30 13:59:30 by mbahri           ###   ########.fr       */
+/*   Created: 2025/10/30 13:59:48 by mbahri            #+#    #+#             */
+/*   Updated: 2025/10/30 13:59:49 by mbahri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_lstsize(t_list *lst)
+t_list	*ft_lstlast(t_list *lst)
 {
-	int	i;
-
 	if (!lst)
-		return (0);
-	i = 1;
+		return (NULL);
 	while (lst->next)
-	{
-		i++;
 		lst = lst->next;
-	}
-	return (i);
+	return (lst);
 }
