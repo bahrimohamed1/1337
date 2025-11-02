@@ -6,7 +6,7 @@
 /*   By: mbahri <mbahri@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/16 22:43:16 by mbahri            #+#    #+#             */
-/*   Updated: 2025/10/16 22:43:17 by mbahri           ###   ########.fr       */
+/*   Updated: 2025/11/02 21:40:43 by mbahri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ size_t	ft_strlcat(char *dest, const char *src, size_t size)
 	size_t	lens;
 
 	lens = ft_strlen(src);
+	if (size == 0)
+		return (lens);
 	lend = ft_strlen(dest);
 	if (size == 0)
 		return (lens);
