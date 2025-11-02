@@ -6,7 +6,7 @@
 /*   By: mbahri <mbahri@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 13:59:29 by mbahri            #+#    #+#             */
-/*   Updated: 2025/10/30 13:59:30 by mbahri           ###   ########.fr       */
+/*   Updated: 2025/11/01 14:50:56 by mbahri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,8 @@ int	ft_lstsize(t_list *lst)
 {
 	int	i;
 
-	if (!lst)
-		return (0);
-	i = 1;
-	while (lst->next)
+	i = 0;
+	while (lst)
 	{
 		i++;
 		lst = lst->next;

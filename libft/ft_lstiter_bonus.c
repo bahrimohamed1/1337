@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbahri <mbahri@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/30 16:29:31 by mbahri            #+#    #+#             */
-/*   Updated: 2025/10/30 16:38:28 by mbahri           ###   ########.fr       */
+/*   Created: 2025/11/01 19:21:09 by mbahri            #+#    #+#             */
+/*   Updated: 2025/11/02 09:20:30 by mbahri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,14 @@
 
 void	ft_lstiter(t_list *lst, void (*f)(void *))
 {
-	if (!f)
+	t_list	*temp;
+
+	if (!lst || !f)
 		return ;
-	while (lst)
+	temp = lst;
+	while (temp)
 	{
-		f(lst->content);
-		lst = lst->next;
+		f(temp->content);
+		temp = temp->next;
 	}
 }

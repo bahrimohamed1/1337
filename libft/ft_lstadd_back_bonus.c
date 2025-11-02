@@ -6,7 +6,7 @@
 /*   By: mbahri <mbahri@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 14:00:47 by mbahri            #+#    #+#             */
-/*   Updated: 2025/10/30 16:40:59 by mbahri           ###   ########.fr       */
+/*   Updated: 2025/11/01 14:50:46 by mbahri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,13 @@ void	ft_lstadd_back(t_list **lst, t_list *new)
 
 	if (!lst || !new)
 		return ;
-	if (*lst == NULL)
+	if (!(*lst))
 	{
-		*lst = new;
+		(*lst) = new;
 		new->next = NULL;
 		return ;
 	}
-	temp = *lst;
+	temp = (*lst);
 	while (temp->next)
 		temp = temp->next;
 	temp->next = new;
