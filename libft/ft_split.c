@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mbahri <mbahri@student.1337.ma>            +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 18:45:26 by mbahri            #+#    #+#             */
-/*   Updated: 2025/10/24 11:21:53 by mbahri           ###   ########.fr       */
+/*   Updated: 2025/11/03 12:55:12 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,18 +40,11 @@ static int	ft_count_words(const char *s, char c)
 static int	ft_count_len(const char *s, char c)
 {
 	int	i;
-	int	count;
 
 	i = 0;
-	count = 0;
-	while (s[i] == c)
-		i++;
 	while (s[i] && s[i] != c)
-	{
 		i++;
-		count++;
-	}
-	return (count);
+	return (i);
 }
 
 static void	*ft_free(char **ptr, int j)
@@ -62,7 +55,7 @@ static void	*ft_free(char **ptr, int j)
 		free(ptr[j]);
 	}
 	free(ptr);
-	return (0);
+	return (NULL);
 }
 
 static char	*ft_handle_word(const char *s, char c, int *i)
@@ -73,7 +66,7 @@ static char	*ft_handle_word(const char *s, char c, int *i)
 	len = ft_count_len(&s[*i], c);
 	word = ft_substr(s, *i, len);
 	if (!word)
-		return (0);
+		return (NULL);
 	*i += len;
 	return (word);
 }
@@ -85,10 +78,10 @@ char	**ft_split(char const *s, char c)
 	int		j;
 
 	if (!s)
-		return (0);
+		return (NULL);
 	ptr = malloc((ft_count_words(s, c) + 1) * sizeof(char *));
 	if (!ptr)
-		return (0);
+		return (NULL);
 	i = 0;
 	j = 0;
 	while (s[i])
@@ -103,6 +96,6 @@ char	**ft_split(char const *s, char c)
 			j++;
 		}
 	}
-	ptr[j] = 0;
+	ptr[j] = NULL;
 	return (ptr);
 }
