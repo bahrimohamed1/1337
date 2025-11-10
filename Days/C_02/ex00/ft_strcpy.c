@@ -1,26 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_strcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbahri <mbahri@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/04 14:07:18 by mbahri            #+#    #+#             */
-/*   Updated: 2025/11/10 16:01:29 by mbahri           ###   ########.fr       */
+/*   Created: 2025/07/21 12:58:44 by mbahri            #+#    #+#             */
+/*   Updated: 2025/07/23 17:28:10 by mbahri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+char	*ft_strcpy(char *dest, char *src)
+{
+	int	i;
 
-# include <stdarg.h>
-# include "libft/libft.h"
-
-int		ft_printf(const char *format, ...);
-char	*ft_utoa(unsigned int n);
-int		ft_putchar(char c);
-int		ft_putstr(char *s);
-int		ft_handle_decimal(va_list args);
-int		ft_handle_unsigned(va_list args);
-
-#endif
+	i = 0;
+	while (src[i])
+	{
+		dest[i] = src[i];
+		i++;
+	}
+	dest[i] = '\0';
+	return (dest);
+}

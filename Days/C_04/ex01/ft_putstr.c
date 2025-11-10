@@ -1,26 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_putstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbahri <mbahri@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/04 14:07:18 by mbahri            #+#    #+#             */
-/*   Updated: 2025/11/10 16:01:29 by mbahri           ###   ########.fr       */
+/*   Created: 2025/07/28 14:42:57 by mbahri            #+#    #+#             */
+/*   Updated: 2025/07/28 14:44:29 by mbahri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include<unistd.h>
 
-# include <stdarg.h>
-# include "libft/libft.h"
+void	ft_putstr(char *str)
+{
+	int	i;
 
-int		ft_printf(const char *format, ...);
-char	*ft_utoa(unsigned int n);
-int		ft_putchar(char c);
-int		ft_putstr(char *s);
-int		ft_handle_decimal(va_list args);
-int		ft_handle_unsigned(va_list args);
-
-#endif
+	i = 0;
+	while (str[i])
+	{
+		write(1, &str[i], 1);
+		i++;
+	}
+}

@@ -1,26 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_strstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbahri <mbahri@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/04 14:07:18 by mbahri            #+#    #+#             */
-/*   Updated: 2025/11/10 16:01:29 by mbahri           ###   ########.fr       */
+/*   Created: 2025/07/28 10:45:54 by mbahri            #+#    #+#             */
+/*   Updated: 2025/07/28 12:14:28 by mbahri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+char	*ft_strstr(char *str, char *to_find)
+{
+	int	i;
+	int	j;
 
-# include <stdarg.h>
-# include "libft/libft.h"
-
-int		ft_printf(const char *format, ...);
-char	*ft_utoa(unsigned int n);
-int		ft_putchar(char c);
-int		ft_putstr(char *s);
-int		ft_handle_decimal(va_list args);
-int		ft_handle_unsigned(va_list args);
-
-#endif
+	i = 0;
+	if (to_find[0] == '\0')
+		return (str);
+	while (str[i])
+	{
+		j = 0;
+		while (str[i + j] && to_find[j] && str[i + j] == to_find[j])
+			j++;
+		if (to_find[j] == '\0')
+			return (&str[i]);
+		i++;
+	}
+	return (0);
+}

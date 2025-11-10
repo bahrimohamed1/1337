@@ -1,26 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_handle_type.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbahri <mbahri@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/04 14:07:18 by mbahri            #+#    #+#             */
-/*   Updated: 2025/11/10 16:01:29 by mbahri           ###   ########.fr       */
+/*   Created: 2025/11/10 16:01:45 by mbahri            #+#    #+#             */
+/*   Updated: 2025/11/10 16:02:53 by mbahri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include "ft_printf.h"
 
-# include <stdarg.h>
-# include "libft/libft.h"
+int	ft_putchar(char c)
+{
+	write(1, &c, 1);
+	return (1);
+}
 
-int		ft_printf(const char *format, ...);
-char	*ft_utoa(unsigned int n);
-int		ft_putchar(char c);
-int		ft_putstr(char *s);
-int		ft_handle_decimal(va_list args);
-int		ft_handle_unsigned(va_list args);
+int	ft_putstr(char *s)
+{
+	size_t	len;
 
-#endif
+	if (!s)
+		s = "(null)";
+	len = ft_strlen(s);
+	write(1, s, len);
+	return (len);
+}

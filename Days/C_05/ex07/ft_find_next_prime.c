@@ -1,26 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_find_next_prime.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbahri <mbahri@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/04 14:07:18 by mbahri            #+#    #+#             */
-/*   Updated: 2025/11/10 16:01:29 by mbahri           ###   ########.fr       */
+/*   Created: 2025/08/05 20:58:36 by mbahri            #+#    #+#             */
+/*   Updated: 2025/08/05 20:59:12 by mbahri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+int	ft_is_prime(int nb)
+{
+	int	i;
 
-# include <stdarg.h>
-# include "libft/libft.h"
+	if (nb <= 1)
+		return (0);
+	i = 2;
+	while (i * i <= nb)
+	{
+		if (nb % i == 0)
+			return (0);
+		i++;
+	}
+	return (1);
+}
 
-int		ft_printf(const char *format, ...);
-char	*ft_utoa(unsigned int n);
-int		ft_putchar(char c);
-int		ft_putstr(char *s);
-int		ft_handle_decimal(va_list args);
-int		ft_handle_unsigned(va_list args);
-
-#endif
+int	ft_find_next_prime(int nb)
+{
+	if (nb < 2)
+		nb = 2;
+	while (!ft_is_prime(nb))
+		nb++;
+	return (nb);
+}

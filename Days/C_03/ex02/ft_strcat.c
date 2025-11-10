@@ -1,26 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_strcat.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbahri <mbahri@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/04 14:07:18 by mbahri            #+#    #+#             */
-/*   Updated: 2025/11/10 16:01:29 by mbahri           ###   ########.fr       */
+/*   Created: 2025/07/27 20:08:03 by mbahri            #+#    #+#             */
+/*   Updated: 2025/07/27 20:37:27 by mbahri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+int	ft_len(char *str)
+{
+	int	i;
 
-# include <stdarg.h>
-# include "libft/libft.h"
+	i = 0;
+	while (str[i])
+	{
+		i++;
+	}
+	return (i);
+}
 
-int		ft_printf(const char *format, ...);
-char	*ft_utoa(unsigned int n);
-int		ft_putchar(char c);
-int		ft_putstr(char *s);
-int		ft_handle_decimal(va_list args);
-int		ft_handle_unsigned(va_list args);
+char	*ft_strcat(char *dest, char *src)
+{
+	int	i;
+	int	len;
 
-#endif
+	len = ft_len(dest);
+	i = 0;
+	while (src[i])
+	{
+		dest[len] = src[i];
+		len++;
+		i++;
+	}
+	dest[len] = '\0';
+	return (dest);
+}
