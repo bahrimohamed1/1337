@@ -1,27 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_striteri.c                                      :+:      :+:    :+:   */
+/*   ft_ultoa_base.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbahri <mbahri@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/27 14:28:01 by mbahri            #+#    #+#             */
-/*   Updated: 2025/10/27 15:07:12 by mbahri           ###   ########.fr       */
+/*   Created: 2025/11/12 17:11:17 by mbahri            #+#    #+#             */
+/*   Updated: 2025/11/15 11:44:20 by mbahri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 
-void	ft_striteri(char *s, void (*f)(unsigned int, char*))
+char	*ft_ultoa_hex(unsigned long n, char *base)
 {
-	unsigned int	i;
+	unsigned long	temp;
+	int				len;
+	char			*str;
 
-	if (!s || !f)
-		return ;
-	i = 0;
-	while (s[i])
+	temp = n;
+	len = 0;
+	if (n == 0)
+		len = 1;
+	while (temp > 0)
 	{
-		f(i, &s[i]);
-		i++;
+		len++;
+		temp /= 16;
 	}
+	str = malloc(len + 1);
+	if (!str)
+		return (NULL);
+	str[len] = '\0';
+	while (len > 0)
+	{
+		len--;
+		str[len] = base[n % 16];
+		n /= 16;
+	}
+	return (str);
 }
