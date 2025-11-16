@@ -6,7 +6,7 @@
 /*   By: mbahri <mbahri@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 21:40:41 by mbahri            #+#    #+#             */
-/*   Updated: 2025/11/15 12:03:55 by mbahri           ###   ########.fr       */
+/*   Updated: 2025/11/16 10:59:32 by mbahri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,8 @@ static int	ft_process_format(const char *format, int *i, va_list args)
 	}
 	else
 		count = write(1, &format[*i], 1);
-	(*i)++;
+	if (format[*i])
+		(*i)++;
 	return (count);
 }
 
