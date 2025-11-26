@@ -6,7 +6,7 @@
 /*   By: mbahri <mbahri@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/26 22:13:30 by mbahri            #+#    #+#             */
-/*   Updated: 2025/11/26 23:33:37 by mbahri           ###   ########.fr       */
+/*   Updated: 2025/11/26 23:39:35 by mbahri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static char	*ft_helper(char *ptr, char **buffer)
 	char	*str;
 	int		i;
 	char	*temp;
-	
+
 	temp = *buffer;
 	n = ft_strchr(ptr, '\n');
 	str = malloc(n + 2);
