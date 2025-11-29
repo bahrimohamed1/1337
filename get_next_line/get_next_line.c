@@ -5,57 +5,75 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbahri <mbahri@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/26 22:13:30 by mbahri            #+#    #+#             */
-/*   Updated: 2025/11/26 23:39:35 by mbahri           ###   ########.fr       */
+/*   Created: 2025/11/22 16:36:39 by mbahri            #+#    #+#             */
+/*   Updated: 2025/11/22 16:36:39 by mbahri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-static char	*ft_helper(char *ptr, char **buffer)
+char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	int		n;
-	char	*str;
-	int		i;
-	char	*temp;
+	char	*sub;
+	size_t	i;
 
-	temp = *buffer;
-	n = ft_strchr(ptr, '\n');
-	str = malloc(n + 2);
-	if (!str)
+	sub = malloc(len + 1);
+	if (!sub)
 		return (NULL);
 	i = 0;
-	while (i <= n)
-		str[i] = ptr[i++];
-	str[i] = '\0';
-	i = 0;
-	while (temp[i])
+	while (i < len)
 	{
-		temp[i] = ptr[++n];
+		sub[i] = s[i + start];
 		i++;
 	}
-	temp[i] = '\0';
-	return (str);
+	sub[i] = '\0';
+	free(s);
+	return (sub);
 }
 
-char	*get_next_line(int fd)
+char	*get_next_line(int  fd)
 {
-	static char	*buffer;
-	char		*ptr;
-	char		*str;
+	char		*buff;
+	static char	*tmp;
 	int			res;
+	int			i;
+	char		*line;
 
-	ptr = buffer;
-	while (ft_strchr(ptr, '\n') == -1)
+	buff = malloc(BUFFER_SIZE + 1);
+	if (!buff)
+		return (NULL);
+	res = read(fd, buff, BUFFER_SIZE);
+	buff[res] = '\0';
+	tmp = ft_strdup(buff);
+	if (!tmp)
+		return (NULL);
+	free(buff);
+	while (!ft_strchr(tmp, '\n'))
 	{
-		str = malloc(BUFFER_SIZE + 1);
-		if (!str)
-			return (NULL);
-		res = read(fd, str, BUFFER_SIZE);
-		if (res > 0)
-			str[res] = '\0';
-		ptr = ft_strjoin(ptr, str);
+		buff = malloc(BUFFER_SIZE + 1);
+		res = read(fd, buff, BUFFER_SIZE);
+		if (res <= 0)
+		{
+			free(buff);
+			break;
+		}
+		buff[res] = '\0';
+		tmp = ft_strjoin(tmp, buff);
+		if (!tmp)
+		{
+			free(buff);
+			break;
+		}
 	}
-	if (ptr)
-		ft_helper(ptr, &buffer);
+	i = ft_strchr(tmp, '\n');
+	if (i == -1)
+	{
+		line = ft_strdup(tmp);
+		free(tmp);
+		return (line);
+	}
+	line = malloc(i + 1);
+	ft_strlcpy(line, tmp, i + 1);
+	tmp = ft_substr(tmp, i, ft_strlen(tmp) - i);
+	return (line);
 }
