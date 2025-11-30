@@ -19,7 +19,10 @@ static char	*ft_substr(char *s, unsigned int start, size_t len)
 
 	sub = malloc(len + 1);
 	if (!sub)
+	{
+		free(s);
 		return (NULL);
+	}
 	i = 0;
 	while (i < len)
 	{
@@ -45,9 +48,9 @@ static char	*ft_extract_line(char **tmp)
 		return (line);
 	}
 	line = malloc(i + 2);
-	ft_strlcpy(line, *tmp, i + 2);
 	if (!line)
 		return (NULL);
+	ft_strlcpy(line, *tmp, i + 2);
 	*tmp = ft_substr(*tmp, i + 1, ft_strlen(*tmp) - i - 1);
 	return (line);
 }

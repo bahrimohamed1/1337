@@ -19,7 +19,10 @@ static char	*ft_substr(char *s, unsigned int start, size_t len)
 
 	sub = malloc(len + 1);
 	if (!sub)
+	{
+		free(s);
 		return (NULL);
+	}
 	i = 0;
 	while (i < len)
 	{
