@@ -16,17 +16,14 @@
 # include <unistd.h>
 # include <stdlib.h>
 
-//DELETE ME
-# include <stdio.h>
-
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 42
 # endif
 
+char			*get_next_line(int  fd);
 size_t			ft_strlen(char *s);
 char			*ft_strdup(char *s);
 int				ft_strchr(char *s, char c);
-char			*get_next_line(int  fd);
 unsigned int	ft_strlcpy(char *dest, char *src, unsigned int size);
 char			*ft_strjoin(char *s1, char *s2);
 

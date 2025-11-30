@@ -52,7 +52,38 @@ static char	*ft_extract_line(char **tmp)
 	return (line);
 }
 
-char	*get_next_line(int  fd)
+static char	*handle_eof(char **tmp)
+{
+	if (*tmp && (*tmp)[0] != '\0')
+		return (ft_extract_line(tmp));
+	return (NULL);
+}
+
+static int	read_until_newline(int fd, char **tmp)
+{
+	char	*buff;
+	int		res;
+
+	while (ft_strchr(*tmp, '\n') == -1)
+	{
+		buff = malloc(BUFFER_SIZE + 1);
+		if (!buff)
+			return (0);
+		res = read(fd, buff, BUFFER_SIZE);
+		if (res <= 0)
+		{
+			free(buff);
+			break ;
+		}
+		buff[res] = '\0';
+		*tmp = ft_strjoin(*tmp, buff);
+		if (!*tmp)
+			break ;
+	}
+	return (1);
+}
+
+char	*get_next_line(int fd)
 {
 	static char	*tmp;
 	char		*buff;
@@ -67,37 +98,15 @@ char	*get_next_line(int  fd)
 	if (res <= 0)
 	{
 		free(buff);
-		if (tmp && tmp[0] != '\0')
-			return (ft_extract_line(&tmp));
-		return (NULL);
+		return (handle_eof(&tmp));
 	}
 	buff[res] = '\0';
 	if (!tmp)
-	{
 		tmp = ft_strdup(buff);
-		free(buff);
-	}
 	else
 		tmp = ft_strjoin(tmp, buff);
-	if (!tmp)
-		return (NULL);
-	while (ft_strchr(tmp, '\n') == -1)
-	{
-		buff = malloc(BUFFER_SIZE + 1);
-		if (!buff)
-			return (NULL);
-		res = read(fd, buff, BUFFER_SIZE);
-		if (res <= 0)
-		{
-			free(buff);
-			break;
-		}
-		buff[res] = '\0';
-		tmp = ft_strjoin(tmp, buff);
-		if (!tmp)
-			break;
-	}
-	if (!tmp)
+	free(buff);
+	if (!tmp || !read_until_newline(fd, &tmp))
 		return (NULL);
 	return (ft_extract_line(&tmp));
 }
