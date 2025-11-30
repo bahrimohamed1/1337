@@ -22,7 +22,7 @@ size_t	ft_strlen(char *s)
 	return (i);
 }
 
-static unsigned int	ft_strlcpy(char *dest, char *src, unsigned int size)
+unsigned int	ft_strlcpy(char *dest, char *src, unsigned int size)
 {
 	unsigned int	i;
 
@@ -42,7 +42,7 @@ static unsigned int	ft_strlcpy(char *dest, char *src, unsigned int size)
 	return (i);
 }
 
-char	*ft_strdup(const char *s)
+char	*ft_strdup(char *s)
 {
 	char	*str;
 	size_t	len;
@@ -57,7 +57,7 @@ char	*ft_strdup(const char *s)
 	return (str);
 }
 
-int	ft_strchr(const char *s, char c)
+int	ft_strchr(char *s, char c)
 {
 	int	i;
 
@@ -81,19 +81,17 @@ char	*ft_strjoin(char *s1, char *s2)
 	len = ft_strlen(s1) + ft_strlen(s2);
 	str = malloc(len + 1);
 	if (!str)
+	{
+		free(s1);
+		free(s2);
 		return (NULL);
-	i = 0;
-	while (s1[i])
-	{
+	}
+	i = -1;
+	while (s1[++i])
 		str[i] = s1[i];
-		i++;
-	}
-	j = 0;
-	while (s2[j])
-	{
+	j = -1;
+	while (s2[++j])
 		str[i + j] = s2[j];
-		j++;
-	}
 	str[i + j] = '\0';
 	free(s1);
 	free(s2);

@@ -12,7 +12,7 @@
 
 #include "get_next_line.h"
 
-char	*ft_substr(char const *s, unsigned int start, size_t len)
+static char	*ft_substr(char *s, unsigned int start, size_t len)
 {
 	char	*sub;
 	size_t	i;
@@ -31,26 +31,61 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	return (sub);
 }
 
+static char	*ft_extract_line(char **tmp)
+{
+	int		i;
+	char	*line;
+
+	i = ft_strchr(*tmp, '\n');
+	if (i == -1)
+	{
+		line = ft_strdup(*tmp);
+		free(*tmp);
+		*tmp = NULL;
+		return (line);
+	}
+	line = malloc(i + 2);
+	ft_strlcpy(line, *tmp, i + 2);
+	if (!line)
+		return (NULL);
+	*tmp = ft_substr(*tmp, i + 1, ft_strlen(*tmp) - i - 1);
+	return (line);
+}
+
 char	*get_next_line(int  fd)
 {
-	char		*buff;
 	static char	*tmp;
+	char		*buff;
 	int			res;
-	int			i;
-	char		*line;
 
+	if (tmp && ft_strchr(tmp, '\n') != -1)
+		return (ft_extract_line(&tmp));
 	buff = malloc(BUFFER_SIZE + 1);
 	if (!buff)
 		return (NULL);
 	res = read(fd, buff, BUFFER_SIZE);
+	if (res <= 0)
+	{
+		free(buff);
+		if (tmp && tmp[0] != '\0')
+			return (ft_extract_line(&tmp));
+		return (NULL);
+	}
 	buff[res] = '\0';
-	tmp = ft_strdup(buff);
+	if (!tmp)
+	{
+		tmp = ft_strdup(buff);
+		free(buff);
+	}
+	else
+		tmp = ft_strjoin(tmp, buff);
 	if (!tmp)
 		return (NULL);
-	free(buff);
-	while (!ft_strchr(tmp, '\n'))
+	while (ft_strchr(tmp, '\n') == -1)
 	{
 		buff = malloc(BUFFER_SIZE + 1);
+		if (!buff)
+			return (NULL);
 		res = read(fd, buff, BUFFER_SIZE);
 		if (res <= 0)
 		{
@@ -60,20 +95,9 @@ char	*get_next_line(int  fd)
 		buff[res] = '\0';
 		tmp = ft_strjoin(tmp, buff);
 		if (!tmp)
-		{
-			free(buff);
 			break;
-		}
 	}
-	i = ft_strchr(tmp, '\n');
-	if (i == -1)
-	{
-		line = ft_strdup(tmp);
-		free(tmp);
-		return (line);
-	}
-	line = malloc(i + 1);
-	ft_strlcpy(line, tmp, i + 1);
-	tmp = ft_substr(tmp, i, ft_strlen(tmp) - i);
-	return (line);
+	if (!tmp)
+		return (NULL);
+	return (ft_extract_line(&tmp));
 }
