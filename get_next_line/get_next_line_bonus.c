@@ -92,10 +92,12 @@ static int	ft_read_and_join(int fd, char **tmp)
 	}
 	buff[res] = '\0';
 	if (!*tmp)
+	{
 		*tmp = ft_strdup(buff);
+		free(buff);
+	}
 	else
 		*tmp = ft_strjoin(*tmp, buff);
-	free(buff);
 	return (1);
 }
 
@@ -104,16 +106,18 @@ char	*get_next_line(int fd)
 	static char	*buffers[1024];
 	char		**tmp;
 
+	if (fd < 0 || fd >= 1024 || BUFFER_SIZE <= 0)
+		return (NULL);
 	tmp = &buffers[fd];
 	if (*tmp && ft_strchr(*tmp, '\n') != -1)
 		return (ft_extract_line(tmp));
-	if (! ft_read_and_join(fd, tmp))
+	if (!ft_read_and_join(fd, tmp))
 	{
 		if (*tmp && (*tmp)[0] != '\0')
 			return (ft_extract_line(tmp));
 		return (NULL);
 	}
-	if (! *tmp)
+	if (!*tmp)
 		return (NULL);
 	read_until_newline(fd, tmp);
 	return (ft_extract_line(tmp));

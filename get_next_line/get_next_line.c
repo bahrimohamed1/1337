@@ -55,11 +55,18 @@ static char	*ft_extract_line(char **tmp)
 	return (line);
 }
 
-static char	*handle_eof(char **tmp)
+static char	*ft_join_buff(char *tmp, char *buff)
 {
-	if (*tmp && (*tmp)[0] != '\0')
-		return (ft_extract_line(tmp));
-	return (NULL);
+	char	*result;
+
+	if (!tmp)
+	{
+		result = ft_strdup(buff);
+		free(buff);
+	}
+	else
+		result = ft_strjoin(tmp, buff);
+	return (result);
 }
 
 static int	read_until_newline(int fd, char **tmp)
@@ -92,6 +99,8 @@ char	*get_next_line(int fd)
 	char		*buff;
 	int			res;
 
+	if (fd < 0 || BUFFER_SIZE <= 0)
+		return (NULL);
 	if (tmp && ft_strchr(tmp, '\n') != -1)
 		return (ft_extract_line(&tmp));
 	buff = malloc(BUFFER_SIZE + 1);
@@ -101,14 +110,12 @@ char	*get_next_line(int fd)
 	if (res <= 0)
 	{
 		free(buff);
-		return (handle_eof(&tmp));
+		if (tmp && tmp[0] != '\0')
+			return (ft_extract_line(&tmp));
+		return (NULL);
 	}
 	buff[res] = '\0';
-	if (!tmp)
-		tmp = ft_strdup(buff);
-	else
-		tmp = ft_strjoin(tmp, buff);
-	free(buff);
+	tmp = ft_join_buff(tmp, buff);
 	if (!tmp || !read_until_newline(fd, &tmp))
 		return (NULL);
 	return (ft_extract_line(&tmp));

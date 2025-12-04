@@ -1,0 +1,19 @@
+# Compiled object files
+*.o
+*.a
+*.so
+
+# Executable files
+*.out
+
+# Debug files
+*.dSYM/
+
+# Editor files
+*.swp
+*~
+.vscode/
+.idea/
+
+# System files
+.DS_Store
