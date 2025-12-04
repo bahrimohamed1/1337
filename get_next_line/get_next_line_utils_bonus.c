@@ -12,88 +12,91 @@
 
 #include "get_next_line_bonus.h"
 
-size_t	ft_strlen(char *s)
+size_t	ft_strlen(const char *s)
 {
 	size_t	i;
 
+	if (!s)
+		return (0);
 	i = 0;
 	while (s[i])
 		i++;
 	return (i);
 }
 
-unsigned int	ft_strlcpy(char *dest, char *src, unsigned int size)
+char	*ft_strchr(const char *s, int c)
 {
-	unsigned int	i;
-
-	i = 0;
-	if (size > 0)
-	{
-		while (src[i] && i < size - 1)
-		{
-			dest[i] = src[i];
-			i++;
-		}
-		dest[i] = '\0';
-	}
-	i = 0;
-	while (src[i])
-		i++;
-	return (i);
-}
-
-char	*ft_strdup(char *s)
-{
-	char	*str;
-	size_t	len;
-
 	if (!s)
 		return (NULL);
-	len = ft_strlen(s);
-	str = malloc(len + 1);
-	if (!str)
-		return (NULL);
-	ft_strlcpy(str, s, len + 1);
+	while (*s)
+	{
+		if (*s == (char)c)
+			return ((char *)s);
+		s++;
+	}
+	if (c == '\0')
+		return ((char *)s);
+	return (NULL);
+}
+
+static char	*ft_empty_str(void)
+{
+	char	*str;
+
+	str = malloc(1);
+	if (str)
+		str[0] = '\0';
 	return (str);
 }
 
-int	ft_strchr(char *s, char c)
+char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	int	i;
+	char	*str;
+	size_t	i;
+	size_t	slen;
 
-	i = 0;
-	while (s[i])
-	{
-		if (s[i] == c)
-			return (i);
-		i++;
-	}
-	return (-1);
+	if (!s)
+		return (NULL);
+	slen = ft_strlen(s);
+	if (start >= slen)
+		return (ft_empty_str());
+	if (len > slen - start)
+		len = slen - start;
+	str = malloc(len + 1);
+	if (!str)
+		return (NULL);
+	i = -1;
+	while (++i < len)
+		str[i] = s[start + i];
+	str[i] = '\0';
+	return (str);
 }
 
 char	*ft_strjoin(char *s1, char *s2)
 {
 	char	*str;
-	size_t	len;
 	size_t	i;
 	size_t	j;
 
-	len = ft_strlen(s1) + ft_strlen(s2);
-	str = malloc(len + 1);
-	if (!str)
+	if (!s1)
 	{
-		free(s1);
-		free(s2);
-		return (NULL);
+		s1 = malloc(1);
+		if (!s1)
+			return (NULL);
+		s1[0] = '\0';
 	}
+	if (!s2)
+		return (free(s1), NULL);
+	str = malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
+	if (!str)
+		return (free(s1), NULL);
 	i = -1;
 	while (s1[++i])
 		str[i] = s1[i];
-	j = -1;
-	while (s2[++j])
-		str[i + j] = s2[j];
-	str[i + j] = '\0';
+	j = 0;
+	while (s2[j])
+		str[i++] = s2[j++];
+	str[i] = '\0';
 	free(s1);
-	free(s2);
 	return (str);
 }
