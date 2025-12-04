@@ -24,6 +24,8 @@ static char	*ft_get_line(char *stash)
 	char	*line;
 	int		len;
 
+	if (!stash)
+		return (NULL);
 	len = 0;
 	if (!stash[len])
 		return (NULL);
