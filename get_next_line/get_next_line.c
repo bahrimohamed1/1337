@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbahri <mbahri@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/30 18:42:34 by mbahri            #+#    #+#             */
-/*   Updated: 2025/11/30 18:42:34 by mbahri           ###   ########.fr       */
+/*   Created: 2025/12/05 14:16:54 by mbahri            #+#    #+#             */
+/*   Updated: 2025/12/05 14:16:54 by mbahri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,11 @@ static char	*ft_free(char **str)
 static char	*ft_get_line(char *stash)
 {
 	char	*line;
-	int		len;
+	size_t	len;
 
-	if (!stash)
+	if (!stash || !stash[0])
 		return (NULL);
 	len = 0;
-	if (!stash[len])
-		return (NULL);
 	while (stash[len] && stash[len] != '\n')
 		len++;
 	line = ft_substr(stash, 0, len + (stash[len] == '\n'));
@@ -58,7 +56,7 @@ static char	*ft_read_file(int fd, char *stash)
 	char	*buff;
 	int		bytes;
 
-	buff = malloc(BUFFER_SIZE + 1);
+	buff = malloc(BUFFER_SIZE + sizeof(char));
 	if (!buff)
 		return (ft_free(&stash));
 	bytes = 1;

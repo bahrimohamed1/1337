@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbahri <mbahri@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/30 18:43:33 by mbahri            #+#    #+#             */
-/*   Updated: 2025/11/30 18:43:33 by mbahri           ###   ########.fr       */
+/*   Created: 2025/12/05 14:17:16 by mbahri            #+#    #+#             */
+/*   Updated: 2025/12/05 14:17:16 by mbahri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ static char	*ft_read_file(int fd, char *stash)
 	char	*buff;
 	int		bytes;
 
-	buff = malloc(BUFFER_SIZE + 1);
+	buff = malloc(BUFFER_SIZE + sizeof(char));
 	if (!buff)
 		return (ft_free(&stash));
 	bytes = 1;
