@@ -5,12 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbahri <mbahri@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/05 14:49:53 by mbahri            #+#    #+#             */
-/*   Updated: 2025/12/05 14:49:53 by mbahri           ###   ########.fr       */
+/*   Created: 2025/12/06 09:32:13 by mbahri            #+#    #+#             */
+/*   Updated: 2025/12/06 09:32:44 by mbahri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line_bonus.h"
+#include "get_next_line.h"
 
 size_t	ft_strlen(const char *s)
 {
