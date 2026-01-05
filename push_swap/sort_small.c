@@ -6,17 +6,11 @@
 /*   By: mbahri <mbahri@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/04 17:22:51 by mbahri            #+#    #+#             */
-/*   Updated: 2026/01/04 17:24:16 by mbahri           ###   ########.fr       */
+/*   Updated: 2026/01/05 20:08:28 by mbahri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-static void	sort_two(t_stack **a)
-{
-	if ((*a)->index > (*a)->next->index)
-		sa(a, 1);
-}
 
 static void	sort_three(t_stack **a)
 {
@@ -101,7 +95,7 @@ void	sort_small(t_stack **a, t_stack **b)
 
 	size = stack_size(*a);
 	if (size == 2)
-		return (sort_two(a));
+		return (sa(a, 1));
 	if (size == 3)
 		return (sort_three(a));
 	if (size == 4)
@@ -116,6 +110,6 @@ void	sort_small(t_stack **a, t_stack **b)
 		push_next_min_to_b(a, b);
 		sort_three(a);
 		pa(a, b, 1);
-		return (pa(a, b, 1));
+		pa(a, b, 1);
 	}
 }

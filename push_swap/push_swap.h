@@ -6,7 +6,7 @@
 /*   By: mbahri <mbahri@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/29 21:25:41 by mbahri            #+#    #+#             */
-/*   Updated: 2026/01/04 17:25:03 by mbahri           ###   ########.fr       */
+/*   Updated: 2026/01/05 20:10:34 by mbahri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,9 @@ int		stack_size(t_stack *stack);
 int		is_sorted(t_stack *stack);
 void	free_stack(t_stack **stack);
 char	**ft_split(char const *s, char c);
+char	*ft_substr(char const *s, unsigned int start, size_t len);
 void	sort_small(t_stack **a, t_stack **b);
+void	chunk_sort(t_stack **a, t_stack **b);
 void	sa(t_stack **a, int print);
 void	sb(t_stack **b, int print);
 void	ss(t_stack **a, t_stack **b, int print);

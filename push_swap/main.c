@@ -6,7 +6,7 @@
 /*   By: mbahri <mbahri@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/30 01:03:42 by mbahri            #+#    #+#             */
-/*   Updated: 2026/01/03 16:20:37 by mbahri           ###   ########.fr       */
+/*   Updated: 2026/01/05 21:31:21 by mbahri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,6 @@ int	main(int argc, char **argv)
 	if (stack_size(a) <= 5)
 		sort_small(&a, &b);
 	else
-		radix_sort(&a, &b);
+		chunk_sort(&a, &b);
 	return (free_stack(&a), free_stack(&b), 0);
 }
