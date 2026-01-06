@@ -6,7 +6,7 @@
 /*   By: mbahri <mbahri@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/05 20:10:46 by mbahri            #+#    #+#             */
-/*   Updated: 2026/01/05 20:18:00 by mbahri           ###   ########.fr       */
+/*   Updated: 2026/01/06 17:58:46 by mbahri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,16 +57,18 @@ static void	push_back_max(t_stack **a, t_stack **b)
 
 static void	push_chunk(t_stack **a, t_stack **b, int start, int chunk)
 {
-	int	size;
-
-	size = stack_size(*a);
-	while (size--)
+	while (*a)
 	{
-		if ((*a)->index >= start && (*a)->index < start + chunk)
+		if ((*a)->index <= start)
 		{
 			pb(a, b, 1);
-			if ((*b)->index < start + chunk / 2)
-				rb(b, 1);
+			rb(b, 1);
+			start++;
+		}
+		else if ((*a)->index <= chunk + start)
+		{
+			pb(a, b, 1);
+			start++;
 		}
 		else
 			ra(a, 1);
@@ -80,15 +82,11 @@ void	chunk_sort(t_stack **a, t_stack **b)
 	int	start;
 
 	size = stack_size(*a);
-	if (size > 100)
-		chunk = 50;
-	else
+	if (size <= 100)
 		chunk = 15;
+	else if (size <= 500)
+		chunk = 35;
 	start = 0;
-	while (*a)
-	{
-		push_chunk(a, b, start, chunk);
-		start += chunk;
-	}
+	push_chunk(a, b, start, chunk);
 	push_back_max(a, b);
 }
