@@ -6,7 +6,7 @@
 /*   By: mbahri <mbahri@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/06 22:13:19 by mbahri            #+#    #+#             */
-/*   Updated: 2026/01/06 22:13:22 by mbahri           ###   ########.fr       */
+/*   Updated: 2026/01/08 15:14:23 by mbahri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,31 +22,31 @@ static void	fail(t_stack **a, t_stack **b)
 
 static int	exec_op(char *op, t_stack **a, t_stack **b)
 {
-	if (!op)
-		return (0);
 	if (!ft_strncmp(op, "sa\n", 3) || !ft_strncmp(op, "sa", 3))
-		return (sa(a, 0), 1);
-	if (!ft_strncmp(op, "sb\n", 3) || !ft_strncmp(op, "sb", 3))
-		return (sb(b, 0), 1);
-	if (!ft_strncmp(op, "ss\n", 3) || !ft_strncmp(op, "ss", 3))
-		return (ss(a, b, 0), 1);
-	if (!ft_strncmp(op, "pa\n", 3) || !ft_strncmp(op, "pa", 3))
-		return (pa(a, b, 0), 1);
-	if (!ft_strncmp(op, "pb\n", 3) || !ft_strncmp(op, "pb", 3))
-		return (pb(a, b, 0), 1);
-	if (!ft_strncmp(op, "ra\n", 3) || !ft_strncmp(op, "ra", 3))
-		return (ra(a, 0), 1);
-	if (!ft_strncmp(op, "rb\n", 3) || !ft_strncmp(op, "rb", 3))
-		return (rb(b, 0), 1);
-	if (!ft_strncmp(op, "rr\n", 3) || !ft_strncmp(op, "rr", 3))
-		return (rr(a, b, 0), 1);
-	if (!ft_strncmp(op, "rra\n", 4) || !ft_strncmp(op, "rra", 4))
-		return (rra(a, 0), 1);
-	if (!ft_strncmp(op, "rrb\n", 4) || !ft_strncmp(op, "rrb", 4))
-		return (rrb(b, 0), 1);
-	if (!ft_strncmp(op, "rrr\n", 4) || !ft_strncmp(op, "rrr", 4))
-		return (rrr(a, b, 0), 1);
-	return (0);
+		sa(a, 0);
+	else if (!ft_strncmp(op, "sb\n", 3) || !ft_strncmp(op, "sb", 3))
+		sb(b, 0);
+	else if (!ft_strncmp(op, "ss\n", 3) || !ft_strncmp(op, "ss", 3))
+		ss(a, b, 0);
+	else if (!ft_strncmp(op, "pa\n", 3) || !ft_strncmp(op, "pa", 3))
+		pa(a, b, 0);
+	else if (!ft_strncmp(op, "pb\n", 3) || !ft_strncmp(op, "pb", 3))
+		pb(a, b, 0);
+	else if (!ft_strncmp(op, "ra\n", 3) || !ft_strncmp(op, "ra", 3))
+		ra(a, 0);
+	else if (!ft_strncmp(op, "rb\n", 3) || !ft_strncmp(op, "rb", 3))
+		rb(b, 0);
+	else if (!ft_strncmp(op, "rr\n", 3) || !ft_strncmp(op, "rr", 3))
+		rr(a, b, 0);
+	else if (!ft_strncmp(op, "rra\n", 4) || !ft_strncmp(op, "rra", 4))
+		rra(a, 0);
+	else if (!ft_strncmp(op, "rrb\n", 4) || !ft_strncmp(op, "rrb", 4))
+		rrb(b, 0);
+	else if (!ft_strncmp(op, "rrr\n", 4) || !ft_strncmp(op, "rrr", 4))
+		rrr(a, b, 0);
+	else
+		return (0);
+	return (1);
 }
 
 static void	run_checker(t_stack **a, t_stack **b)
