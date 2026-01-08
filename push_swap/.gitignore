@@ -1,0 +1,12 @@
+# Object files
+*.o
+
+# Executables
+push_swap
+checker
+
+# Editor files
+*.swp
+*.swo
+*~
+.DS_Store
