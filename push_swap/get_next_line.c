@@ -29,7 +29,7 @@ static char	*ft_get_line(char *stash)
 	len = 0;
 	while (stash[len] && stash[len] != '\n')
 		len++;
-	line = ft_substr(stash, 0, len + (stash[len] == '\n'));
+	line = ft_substr_gnl(stash, 0, len + (stash[len] == '\n'));
 	return (line);
 }
 
@@ -46,7 +46,7 @@ static char	*ft_update_stash(char *stash)
 		free(stash);
 		return (NULL);
 	}
-	new_stash = ft_substr(stash, len + 1, ft_strlen(stash) - len - 1);
+	new_stash = ft_substr_gnl(stash, len + 1, ft_strlen(stash) - len - 1);
 	free(stash);
 	return (new_stash);
 }
