@@ -1,38 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbahri <mbahri@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/30 01:03:42 by mbahri            #+#    #+#             */
-/*   Updated: 2026/01/06 22:44:09 by mbahri           ###   ########.fr       */
+/*   Created: 2026/01/06 22:05:08 by mbahri            #+#    #+#             */
+/*   Updated: 2026/01/06 22:43:34 by mbahri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#ifndef GET_NEXT_LINE_H
+# define GET_NEXT_LINE_H
 
-int	main(int argc, char **argv)
-{
-	t_stack	*a;
-	t_stack	*b;
+# include <unistd.h>
+# include <stdlib.h>
 
-	if (argc < 2)
-		return (0);
-	a = NULL;
-	b = NULL;
-	parse_input(argc, argv, &a);
-	if (is_sorted(a))
-	{
-		free_stack(&a);
-		return (0);
-	}
-	assign_indexes(a);
-	if (stack_size(a) <= 5)
-		sort_small(&a, &b);
-	else
-		chunk_sort(&a, &b);
-	free_stack(&a);
-	free_stack(&b);
-	return (0);
-}
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 42
+# endif
+
+char	*get_next_line(int fd);
+size_t	ft_strlen(const char *s);
+char	*ft_strchr(const char *s, int c);
+char	*ft_strjoin(char *s1, char *s2);
+char	*ft_substr_gnl(char const *s, unsigned int start, size_t len);
+
+#endif

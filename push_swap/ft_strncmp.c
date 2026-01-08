@@ -1,38 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbahri <mbahri@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/30 01:03:42 by mbahri            #+#    #+#             */
-/*   Updated: 2026/01/06 22:44:09 by mbahri           ###   ########.fr       */
+/*   Created: 2026/01/06 22:01:55 by mbahri            #+#    #+#             */
+/*   Updated: 2026/01/06 22:02:19 by mbahri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	main(int argc, char **argv)
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
-	t_stack	*a;
-	t_stack	*b;
+	size_t	i;
 
-	if (argc < 2)
+	if (n == 0)
 		return (0);
-	a = NULL;
-	b = NULL;
-	parse_input(argc, argv, &a);
-	if (is_sorted(a))
-	{
-		free_stack(&a);
-		return (0);
-	}
-	assign_indexes(a);
-	if (stack_size(a) <= 5)
-		sort_small(&a, &b);
-	else
-		chunk_sort(&a, &b);
-	free_stack(&a);
-	free_stack(&b);
-	return (0);
+	i = 0;
+	while (s1[i] && s2[i] && s1[i] == s2[i] && i < n - 1)
+		i++;
+	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
 }

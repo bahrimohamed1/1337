@@ -6,7 +6,7 @@
 /*   By: mbahri <mbahri@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/29 21:25:41 by mbahri            #+#    #+#             */
-/*   Updated: 2026/01/05 20:10:34 by mbahri           ###   ########.fr       */
+/*   Updated: 2026/01/06 22:12:34 by mbahri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,5 +50,8 @@ void	rr(t_stack **a, t_stack **b, int print);
 void	rra(t_stack **a, int print);
 void	rrb(t_stack **b, int print);
 void	rrr(t_stack **a, t_stack **b, int print);
+int		ft_strncmp(const char *s1, const char *s2, size_t n);
+char	*get_next_line(int fd);
+void	parse_input(int argc, char **argv, t_stack **a);
 
 #endif

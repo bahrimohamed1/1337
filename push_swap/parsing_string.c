@@ -6,7 +6,7 @@
 /*   By: mbahri <mbahri@student.1337.ma>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/03 14:19:35 by mbahri            #+#    #+#             */
-/*   Updated: 2026/01/03 14:54:23 by mbahri           ###   ########.fr       */
+/*   Updated: 2026/01/06 22:44:34 by mbahri           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,4 +62,17 @@ int	parse_string_arg(char *arg, t_stack **stack_a)
 	ok = parse_tokens(tokens, stack_a);
 	free_tokens(tokens);
 	return (ok);
+}
+
+void	parse_input(int argc, char **argv, t_stack **a)
+{
+	int	i;
+
+	i = 1;
+	while (i < argc)
+	{
+		if (!parse_string_arg(argv[i], a))
+			error_exit(a);
+		i++;
+	}
 }
